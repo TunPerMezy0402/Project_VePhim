@@ -1394,13 +1394,13 @@
                                     </div>
                                 </div>
                                 <!-- parent pages-->
-                                <a class="nav-link" href="app/calendar.html" role="button">
+                                <a class="nav-link" href="{{ route('users.index') }}" role="button">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon">
                                             <span class="fas fa-calendar-alt">
                                             </span>
                                         </span>
-                                        <span class="nav-link-text ps-1">Home</span>
+                                        <span class="nav-link-text ps-1">User Member</span>
                                     </div>
                                 </a>
                                 <!-- parent pages-->
