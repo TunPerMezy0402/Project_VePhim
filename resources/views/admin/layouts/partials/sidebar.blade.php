@@ -1294,7 +1294,7 @@
                             </span>
                         </button>
                     </div>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{ route('admin.index') }}">
                         <div class="d-flex align-items-center py-3">
                             <img class="me-2" src="{{ asset('assets/img/logos/Wingman.png') }}" alt="" width="60" />
                             <span class="font-sans-serif text-primary">Wing</span>
@@ -1394,7 +1394,7 @@
                                     </div>
                                 </div>
                                 <!-- parent pages-->
-                                <a class="nav-link" href="{{ route('users.index') }}" role="button">
+                                <a class="nav-link" href="{{ route('admin.users.index') }}" role="button">
                                     <div class="d-flex align-items-center">
                                         <span class="nav-link-icon">
                                             <span class="fas fa-calendar-alt">

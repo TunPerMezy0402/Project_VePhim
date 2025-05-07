@@ -1,4 +1,4 @@
-@extends('layouts.AdminLayout')
+@extends('admin.layouts.AdminLayout')
 
 @section('content')
 
@@ -7,7 +7,7 @@
         <h5 class="mb-0">Thêm người dùng mới</h5>
     </div>
     <div class="card-body bg-body-tertiary">
-        <form class="row g-3" method="POST" action="{{ route('users.store') }}">
+        <form class="row g-3" method="POST" action="{{ route('admin.users.store') }}">
             @csrf
             @if(session('success'))
             <div class="alert alert-success">

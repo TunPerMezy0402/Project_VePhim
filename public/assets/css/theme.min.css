@@ -31516,16 +31516,18 @@ html[data-bs-theme=dark] .bg-priority-low:checked {
 }
 
 .toggle:checked + .slider {
-  background: linear-gradient(45deg, #16213e, #1a1a2e);
+  background: linear-gradient(304deg, #ccc7c7, #ccc7c7);
 }
 
 .toggle:checked + .slider .toggle-orb {
   transform: translateX(30px) rotate(360deg);
-  background: linear-gradient(145deg, #4ecdc4, #45b7af);
+  background: linear-gradient(145deg, #1ae417, #1ae417);
+
 }
 
 .toggle:checked + .slider .inner-orb {
-  background: linear-gradient(145deg, #45b7af, #3da89f);
+  background: linear-gradient(145deg, #1ae417, #1ae417);
+
   transform: scale(0.9);
 }
 

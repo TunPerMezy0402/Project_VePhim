@@ -25,7 +25,7 @@ class UserController extends Controller
     // Lấy danh sách người dùng với phân trang
     $users = $query->orderBy('created_at', 'desc')->paginate(15);
 
-    return view('users.index', compact('users'));
+    return view('admin.users.index', compact('users'));
 }
 
     
@@ -34,7 +34,7 @@ class UserController extends Controller
     // Form tạo người dùng mới
     public function create()
     {
-        return view('users.create');
+        return view('admin.users.create');
     }
 
     // Lưu người dùng mới
@@ -75,7 +75,7 @@ class UserController extends Controller
     $user->save();
 
     // Trả về thông báo thành công
-    return redirect()->route('users.index')->with('success', 'Người dùng mới đã được thêm!');
+    return redirect()->route('admin.users.index')->with('success', 'Người dùng mới đã được thêm!');
 }
 
 
@@ -83,14 +83,14 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('users.show', compact('user'));
+        return view('admin.users.show', compact('user'));
     }
 
     // Form sửa người dùng
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     // Cập nhật người dùng
@@ -133,7 +133,7 @@ class UserController extends Controller
     
         $user->save();
     
-        return redirect()->route('users.show', $user->id)->with('success', 'Cập nhật người dùng thành công !');
+        return redirect()->route('admin.users.show', $user->id)->with('success', 'Cập nhật người dùng thành công !');
     }
     
 
@@ -144,6 +144,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'Đã xóa người dùng thành công');
+        return redirect()->route('admin.users.index')->with('success', 'Đã xóa người dùng thành công');
     }
 }

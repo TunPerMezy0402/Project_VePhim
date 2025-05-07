@@ -1,8 +1,8 @@
-@extends('layouts.AdminLayout')
+@extends('admin.layouts.AdminLayout')
 
 @section('content')
 <div class="container mt-4">
-    <a href="{{ route('users.index') }}" class="btn btn-danger btn-sm">Back</a>
+    <a href="{{ route('admin.users.index') }}" class="btn btn-danger btn-sm">Back</a>
     @if(session('success'))
         <div class="alert alert-success mt-2">
             {{ session('success') }}
@@ -48,7 +48,7 @@
                 </div>
                 <!-- Cột 2 -->
                 <div class="w-50 d-flex justify-content-end">
-                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
+                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <!-- From Uiverse.io by sihamjardi -->

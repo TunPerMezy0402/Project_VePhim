@@ -5,7 +5,7 @@
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <!-- /Added by HTTrack -->
 
-@include('layouts.partials.head')
+@include('admin.layouts.partials.head')
 
 <body>
     <!-- ===============================================-->
@@ -21,9 +21,9 @@
               container.classList.add('container-fluid');
             }
             </script>
-            @include('layouts.partials.sidebar')
+            @include('admin.layouts.partials.sidebar')
             <div class="content">
-                @include('layouts.partials.header')
+                @include('admin.layouts.partials.header')
                 <script>
                     var navbarPosition = localStorage.getItem('navbarPosition');
                     var navbarVertical = document.querySelector('.navbar-vertical');
@@ -73,7 +73,7 @@
 
 
                 
-                @include('layouts.partials.footer')
+                @include('admin.layouts.partials.footer')
             </div>
             <div class="modal fade" id="authentication-modal" tabindex="-1" role="dialog"
                 aria-labelledby="authentication-modal-label" aria-hidden="true">
@@ -335,7 +335,7 @@
     <!-- ===============================================-->
     <!--    JavaScripts-->
     <!-- ===============================================-->
-    @include('layouts.partials.script')
+    @include('admin.layouts.partials.script')
 </body>
 <!-- Mirrored from prium.github.io/falcon/v3.23.0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Dec 2024 08:35:48 GMT -->
 

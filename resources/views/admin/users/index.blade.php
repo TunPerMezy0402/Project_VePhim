@@ -1,4 +1,4 @@
-@extends('layouts.AdminLayout')
+@extends('admin.layouts.AdminLayout')
 
 @section('content')
 @if(session('success'))
@@ -12,7 +12,7 @@
         <div class="row flex-between-center">
           <div class="col-12 col-md-6 col-xl-5 d-flex align-items-center gap-3 flex-wrap">
             <h5 class="fs-9 mb-0 text-nowrap py-2 py-xl-0">Customers</h5>
-            <form action="{{ route('users.index') }}" method="GET" class="w-100 w-md-auto">
+            <form action="{{ route('admin.users.index') }}" method="GET" class="w-100 w-md-auto">
               <div class="input-group input-group-sm">
                 <input type="text" class="form-control" name="search" placeholder="Search ..." value="{{ request('search') }}">
                 <button class="btn btn-primary" type="submit">Tìm</button>
@@ -22,7 +22,7 @@
           <div class="col-8 col-sm-auto text-end ps-2">
             <div id="table-customers-replace-element">
                 <!-- Nút New -->
-                <a href="{{ route('users.create') }}" class="btn btn-falcon-default btn-sm me-2">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-falcon-default btn-sm me-2">
                   <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
                   <span class="d-none d-sm-inline-block ms-1">New</span>
                 </a>
@@ -66,7 +66,7 @@
                             {{ $loop->iteration + ($users->currentPage() - 1) * $users->perPage() }}
                         </td>
                         <td class="name align-middle white-space-nowrap py-2"><a
-                                href="{{ route('users.show', $user->id) }}">
+                                href="{{ route('admin.users.show', $user->id) }}">
                                 <div class="d-flex d-flex align-items-center">
                                     <div class="avatar avatar-xl me-2">
                                         <img class="rounded-circle" src="../../assets/img/team/2.jpg" alt="" />
