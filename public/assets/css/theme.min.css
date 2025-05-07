@@ -31459,7 +31459,7 @@ html[data-bs-theme=dark] .bg-priority-low:checked {
   position: absolute;
   inset: 0;
   cursor: pointer;
-  background: linear-gradient(45deg, #1a1a2e, #16213e);
+  background: linear-gradient(304deg, #ccc7c7, #ccc7c7);
   border-radius: 15px;
   transition: 0.4s;
   overflow: hidden;

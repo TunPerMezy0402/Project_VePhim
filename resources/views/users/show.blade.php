@@ -21,6 +21,8 @@
                     <h6 class="text-uppercase text-700 fs-7">
                         @if ( $user->role === 'user')
                         <span class="badge bg-warning">{{ $user->role }}</span>
+                        @elseif ( $user->role === 'vendor' )
+                        <span class="badge bg-info">{{ $user->role }}</span>
                         @else
                         <span class="badge bg-primary">{{ $user->role }}</span>
                         @endif
@@ -178,12 +180,24 @@
                     </div>
                     <div class="row">
                         <div class="col-5 col-sm-4">
-                            <p class="fw-semi-bold mb-0">Invoice prefix</p>
+                            <p class="fw-semi-bold mb-1">Phone number</p>
                         </div>
                         <div class="col">
-                            <p class="fw-semi-bold mb-0">7C23435</p>
+                            <a href="tel:+12025550110">+1-202-555-0110</a>
                         </div>
                     </div>
+                    {{-- <div class="row">
+                        <div class="col-5 col-sm-4">
+                            <p class="fw-semi-bold mb-0">Invoice prefix</p>
+                        </div>
+                        <div class="mb-3 col">
+                            <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
+                                <option value="user" {{ old('role')=='user' ? 'selected' : '' }}>User</option>
+                                <option value="vendor" {{ old('role')=='vendor' ? 'selected' : '' }}>Vendor</option>
+                                <option value="admin" {{ old('role')=='admin' ? 'selected' : '' }}>Admin</option>
+                            </select>
+                        </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="card-footer border-top text-end">

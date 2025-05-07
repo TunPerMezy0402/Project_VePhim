@@ -7,7 +7,13 @@
         <h5 class="mb-0">Thêm người dùng mới</h5>
     </div>
     <div class="card-body bg-body-tertiary">
-        <form class="row g-3">
+        <form class="row g-3" method="POST" action="{{ route('users.store') }}">
+            @csrf
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
             <div class="card p-4">
                 <div class="row">
                     <div class="col-6 mb-3">
@@ -53,14 +59,16 @@
                         <label for="role" class="form-label">Vai trò</label>
                         <select class="form-select @error('role') is-invalid @enderror" id="role" name="role">
                             <option value="user" {{ old('role')=='user' ? 'selected' : '' }}>User</option>
+                            <option value="vendor" {{ old('role')=='vendor' ? 'selected' : '' }}>Vendor</option>
                             <option value="admin" {{ old('role')=='admin' ? 'selected' : '' }}>Admin</option>
                         </select>
                         @error('role') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm">Thêm người dùng</button>
             </div>
+            <button type="submit" class="btn btn-primary btn-sm">Thêm người dùng</button>
         </form>
     </div>
 </div>
+
 @endsection

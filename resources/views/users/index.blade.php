@@ -91,7 +91,7 @@
                         <td class="joined align-middle py-2">
                             {{ optional($user->created_at)->format('d/m/Y') }}
                         </td>
-                        <td class="status align-middle white-space-nowrap py-2 text-end">
+                        <td class="status align-middle white-space-nowrap py-2">
                             <label class="cosmic-toggle">
                                 <input class="toggle" type="checkbox" {{ $user->status == 0 ? 'checked' : 'disabled' }}
                                 disabled/>
