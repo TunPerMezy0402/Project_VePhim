@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-        <form class="card-body bg-body-tertiary border-top" action="{{ route('users.update', $user->id) }}"
+        <form class="card-body bg-body-tertiary border-top" action="{{ route('admin.users.update', $user->id) }}"
             method="POST">
             @csrf
             @method('PUT')

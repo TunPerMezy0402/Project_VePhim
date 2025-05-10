@@ -79,11 +79,15 @@
                         <td class="email align-middle py-2"><a href="mailto:antony@example.com">{{ $user->email }}</a>
                         </td>
                         <td class="phone align-middle white-space-nowrap py-2">
+                            @if($user->address === null)
+                            <span class="badge bg-warning text-white">Chưa cập nhật số điện thoại</span>
+                            @else
                             <a href="tel:9013243127">{{ $user->phone }}</a>
+                            @endif
                         </td>
                         <td class="address align-middle white-space-nowrap ps-5 py-2">
                             @if($user->address === null)
-                            <span class="badge bg-warning text-white">Chưa có thông tin địa chỉ</span>
+                            <span class="badge bg-warning text-white">Chưa cập nhật thông tin địa chỉ</span>
                             @else
                             {{ Str::limit($user->address, 30) }}
                             @endif
