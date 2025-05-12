@@ -28581,7 +28581,7 @@ html[dir=rtl] .rtl-row-reverse {
 |   Calender
 -----------------------------------------------*/
 .calendar {
-  width: 3.125rem;
+  width: 5.125rem;
   line-height: 1;
   display: -webkit-box;
   display: -ms-flexbox;

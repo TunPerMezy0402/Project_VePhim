@@ -1,6 +1,7 @@
 @extends('admin.layouts.AdminLayout')
 
 @section('content')
+
 <form action="{{ route('admin.movies.store') }}" method="POST" enctype="multipart/form-data">
   @csrf
 
@@ -14,15 +15,7 @@
     </div>
   </div>
 
-  {{-- Cover Image --}}
-  <div class="card cover-image mb-3">
-    <img class="card-img-top" id="cover-preview" src="{{ asset('assets/img/generic/nophoto.png') }}" alt="Cover Preview" />
-    <label class="cover-image-file-input btn btn-outline-secondary mt-2" for="upload-cover-image">
-      <i class="fas fa-camera me-2"></i> Upload Cover Image
-    </label>
-    <input class="d-none" id="upload-cover-image" type="file" name="image" accept="image/*" onchange="previewImage(event)" />
-    @error('image') <span class="text-danger d-block mt-1">{{ $message }}</span> @enderror
-  </div>
+  <a href="{{ route('admin.movies.index') }}" class="btn btn-danger btn-sm mb-3">Back</a>
 
   <div class="row g-0">
     {{-- Left: Movie Details --}}
@@ -41,13 +34,15 @@
 
             <div class="col-12 mb-3">
               <label class="form-label" for="description">Description</label>
-              <textarea class="form-control" id="description" name="description" rows="6">{{ old('description') }}</textarea>
+              <textarea class="form-control" id="description" name="description"
+                rows="6">{{ old('description') }}</textarea>
               @error('description') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
             <div class="col-sm-6 mb-3">
               <label class="form-label" for="release_date">Release Date</label>
-              <input class="form-control" id="release_date" type="date" name="release_date" value="{{ old('release_date') }}" />
+              <input class="form-control" id="release_date" type="date" name="release_date"
+                value="{{ old('release_date') }}" />
               @error('release_date') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
 
@@ -62,9 +57,9 @@
               <select class="form-select" id="country_id" name="country_id">
                 <option value="">Select a country...</option>
                 @foreach ($countries as $country)
-                  <option value="{{ $country->id }}" {{ old('country_id') == $country->id ? 'selected' : '' }}>
-                    {{ $country->name }}
-                  </option>
+                <option value="{{ $country->id }}" {{ old('country_id')==$country->id ? 'selected' : '' }}>
+                  {{ $country->name }}
+                </option>
                 @endforeach
               </select>
               @error('country_id') <span class="text-danger">{{ $message }}</span> @enderror
@@ -75,9 +70,9 @@
               <select class="form-select" id="director_id" name="director_id">
                 <option value="">Select a director...</option>
                 @foreach ($directors as $director)
-                  <option value="{{ $director->id }}" {{ old('director_id') == $director->id ? 'selected' : '' }}>
-                    {{ $director->name }}
-                  </option>
+                <option value="{{ $director->id }}" {{ old('director_id')==$director->id ? 'selected' : '' }}>
+                  {{ $director->name }}
+                </option>
                 @endforeach
               </select>
               @error('director_id') <span class="text-danger">{{ $message }}</span> @enderror
@@ -85,7 +80,8 @@
 
             <div class="col-sm-6 mb-3">
               <div class="form-check mt-4">
-                <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active') ? 'checked' : '' }}>
+                <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{
+                  old('is_active') ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_active">Active</label>
               </div>
               @error('is_active') <span class="text-danger">{{ $message }}</span> @enderror
@@ -93,7 +89,8 @@
 
             <div class="col-12 mb-3">
               <label class="form-label" for="trailer_url">Trailer URL</label>
-              <input class="form-control" id="trailer_url" type="url" name="trailer_url" value="{{ old('trailer_url') }}" />
+              <input class="form-control" id="trailer_url" type="url" name="trailer_url"
+                value="{{ old('trailer_url') }}" />
               @error('trailer_url') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
           </div>
@@ -101,9 +98,29 @@
       </div>
     </div>
 
-    {{-- Right: Other Info --}}
+    {{-- Right: Cover Image + Other Info --}}
     <div class="col-lg-4 ps-lg-2">
       <div class="sticky-sidebar">
+
+        {{-- Cover Image --}}
+        <div class="card mb-3 text-center">
+          <div class="position-relative d-inline-block">
+            <img id="cover-preview" src="{{ asset('assets/img/generic/nophoto.png') }}" alt="Cover Preview"
+              class="img-fluid rounded mt-2" style="width: 200px;">
+           <button type="button" id="remove-image" class="btn btn-sm btn-outline-danger position-absolute top-0 end-0 m-2"
+              style="border-radius: 50%; width: 30px; height: 30px; line-height: 1; font-size: 18px; padding: 0; border: 2px solid #dc3545; background-color: white;"
+              title="Remove image" onclick="removeImage()" hidden>
+              <i class="fas fa-times" style="color: #dc3545;"></i>
+            </button>
+          </div>
+          <label for="upload-cover-image" class="btn btn-outline-secondary mt-2">
+            <i class="fas fa-camera me-2"></i> Upload Cover Image
+          </label>
+          <input type="file" id="upload-cover-image" name="image" accept="image/*" class="d-none"
+            onchange="previewImage(event)">
+          @error('image') <span class="text-danger d-block mt-1">{{ $message }}</span> @enderror
+        </div>
+
         <div class="card mb-3">
           <div class="card-header">
             <h5 class="mb-0">Other Info</h5>
@@ -128,6 +145,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -136,21 +154,28 @@
     <button type="submit" class="btn btn-primary">Create Movie</button>
   </div>
 </form>
+
 @endsection
 
-@push('scripts')
+
 <script>
   function previewImage(event) {
-    const input = event.target;
     const reader = new FileReader();
-
-    reader.onload = function(){
-      document.getElementById('cover-preview').src = reader.result;
+    reader.onload = function () {
+      const output = document.getElementById('cover-preview');
+      output.src = reader.result;
+      // Show the remove image button
+      document.getElementById('remove-image').hidden = false;
     };
+    reader.readAsDataURL(event.target.files[0]);
+  }
 
-    if (input.files && input.files[0]) {
-      reader.readAsDataURL(input.files[0]);
-    }
+  function removeImage() {
+    const preview = document.getElementById('cover-preview');
+    const input = document.getElementById('upload-cover-image');
+    preview.src = "{{ asset('assets/img/generic/nophoto.png') }}";
+    input.value = ''; // Clear selected image
+    // Hide the remove image button again
+    document.getElementById('remove-image').hidden = true;
   }
 </script>
-@endpush

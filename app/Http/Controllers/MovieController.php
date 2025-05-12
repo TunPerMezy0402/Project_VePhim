@@ -11,45 +11,42 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    // Hiển thị danh sách các phim
-   public function index(Request $request)
+public function index(Request $request)
 {
     $query = Movie::query();
 
-    // Lọc theo genre (nhiều-nhiều)
+    // Lọc theo thể loại (many-to-many)
     if ($request->filled('genre_id')) {
-        $query->whereHas('genres', function ($q) use ($request) {
-            $q->where('genres.id', $request->genre_id);
-        });
+        $query->whereHas('genres', fn($q) => $q->where('genres.id', $request->genre_id));
     }
 
-    // Lọc theo actor (nhiều-nhiều)
+    // Lọc theo diễn viên (many-to-many)
     if ($request->filled('actor_id')) {
-        $query->whereHas('actors', function ($q) use ($request) {
-            $q->where('actors.id', $request->actor_id);
-        });
+        $query->whereHas('actors', fn($q) => $q->where('actors.id', $request->actor_id));
     }
 
-    // Lọc theo country (giả sử movie có khóa ngoại country_id)
+    // Lọc theo quốc gia
     if ($request->filled('country_id')) {
         $query->where('country_id', $request->country_id);
     }
 
-    // Lọc theo director (giả sử movie có khóa ngoại director_id)
+    // Lọc theo đạo diễn
     if ($request->filled('director_id')) {
         $query->where('director_id', $request->director_id);
     }
 
-    $movies = $query->latest()->paginate(10);
+    // Phân trang 10 phần tử mỗi trang
+    $movies = $query->latest()->paginate(6)->withQueryString();
 
     return view('admin.movies.index', [
         'movies' => $movies,
         'genres' => Genre::all(),
         'countries' => Country::all(),
         'directors' => Director::all(),
-        'actors' => Actor::all()
+        'actors' => Actor::all(),
     ]);
 }
+
 
 
 
@@ -63,8 +60,10 @@ class MovieController extends Controller
         return view('admin.movies.create', compact('countries', 'directors'));
     }
 
+
+
     // Lưu phim mới vào cơ sở dữ liệu
-    public function store(Request $request)
+  public function store(Request $request)
 {
     $validated = $request->validate([
         'title' => 'required|string|max:255',
@@ -77,12 +76,10 @@ class MovieController extends Controller
         'trailer_url' => 'nullable|url',
     ]);
 
-    // Checkbox không gửi nếu không được check → phải set thủ công
     $validated['is_active'] = $request->has('is_active') ? 1 : 0;
 
-    // Xử lý upload ảnh (nếu có)
     if ($request->hasFile('image')) {
-        $validated['image'] = $request->file('image')->store('public/movies');
+        $validated['image'] = $request->file('image')->store('movies', 'public');
     }
 
     Movie::create($validated);
@@ -91,12 +88,13 @@ class MovieController extends Controller
 }
 
 
+
     // Hiển thị chi tiết phim
     public function show($id)
-    {
-        $movie = Movie::findOrFail($id);
-        return view('admin.movies.show', compact('movie'));
-    }
+{
+    $movie = Movie::with('tags')->findOrFail($id);
+    return view('admin.movies.show', compact('movie'));
+}
 
     // Hiển thị form chỉnh sửa phim
     public function edit($id)
