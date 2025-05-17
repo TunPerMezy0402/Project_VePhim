@@ -118,7 +118,8 @@ Route::prefix('admin/movies')->middleware(['auth', 'admin'])->group(function () 
     Route::post('/{id}/restore', [MovieController::class, 'restore'])->name('admin.movies.restore');            // Khôi phục mềm
     Route::delete('/{id}/force-delete', [MovieController::class, 'forceDelete'])->name('admin.movies.forceDelete'); // Xóa vĩnh viễn
     Route::get('/{id}/edit', [MovieController::class, 'edit'])->name('admin.movies.edit');                      // Form sửa
-    Route::get('/{id}', [MovieController::class, 'show'])->name('admin.movies.show');                           // Chi tiết
+    Route::get('/{id}', [MovieController::class, 'show'])->name('admin.movies.show');
+    Route::get('/trash/{id}', [MovieController::class, 'showTrash'])->name('admin.movies.showTrash');                           // Chi tiết                           // Chi tiết
     Route::put('/{id}', [MovieController::class, 'update'])->name('admin.movies.update');                       // Cập nhật
     Route::delete('/{id}', [MovieController::class, 'destroy'])->name('admin.movies.destroy');                  // Xóa mềm
 

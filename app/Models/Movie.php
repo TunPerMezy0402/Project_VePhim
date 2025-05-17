@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Container\Attributes\Tag;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Movie extends Model
@@ -47,8 +46,4 @@ class Movie extends Model
         return $this->belongsTo(Country::class);
     }
 
-     public function tags()
-    {
-        return $this->belongsToMany(Tag::class);
-    }
 }

@@ -75,7 +75,8 @@
                                         <h5 class="mb-0 fs-10">{{ $user->name }}</h5>
                                     </div>
                                 </div>
-                            </a></td>
+                            </a>
+                        </td>
                         <td class="email align-middle py-2"><a href="mailto:antony@example.com">{{ $user->email }}</a>
                         </td>
                         <td class="phone align-middle white-space-nowrap py-2">

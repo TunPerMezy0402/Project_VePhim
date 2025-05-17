@@ -5,10 +5,20 @@
     <div class="card mb-3 mb-lg-0">
         <div class="card-header bg-body-tertiary d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Movies</h5>
-            <a href="{{ route('admin.movies.create') }}" class="btn btn-sm btn-dark">
+            <div>
+                <a href="{{ route('admin.movies.create') }}" class="btn btn-sm btn-dark">
                 + Add Movie
             </a>
+            <a href="{{ route('admin.movies.trash') }}" class="btn btn-sm btn-dark">
+                - Thùng rác
+            </a>
+            </div>
         </div>
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
 
         <!-- Filter Form -->
         <div class="card-body">
@@ -98,7 +108,8 @@
 
                         <div class="flex-1">
                             <h6 class="fs-6 fw-bold mb-3">
-                                <a href="{{ route('admin.movies.show', $movie->id) }}" class="badge bg-success text-light rounded-3 p-2 px-3 shadow-sm">
+                                <a href="{{ route('admin.movies.show', $movie->id) }}"
+                                    class="badge bg-success text-light rounded-3 p-2 px-3 shadow-sm">
                                     {{ \Illuminate\Support\Str::limit($movie->title, 15) }}
                                 </a>
                             </h6>
@@ -109,15 +120,21 @@
                                     'Unknown' }}</span></p>
 
                             <p class="text-muted mb-1">Actors:
-                                @foreach($movie->actors as $actor)
-                                <span class="badge bg-light text-primary me-1">{{ $actor->name }}</span>
+                                @foreach($movie->actors->take(3) as $actor)
+                                <span class="badge bg-secondary text-wight me-1">{{ $actor->name }}</span>
                                 @endforeach
+                                @if($movie->actors->count() > 3)
+                                <span class="badge bg-secondary text-wight me-1">...</span>
+                                @endif
                             </p>
 
                             <p class="text-muted mb-1">Genres:
-                                @foreach($movie->genres as $genre)
-                                <span class="badge bg-secondary me-1">{{ $genre->name }}</span>
+                                @foreach($movie->genres->take(3) as $genre)
+                                <span class="badge bg-primary text-wight me-1">{{ $genre->name }}</span>
                                 @endforeach
+                                @if($movie->genres->count() > 3)
+                                <span class="badge bg-primary text-wight me-1">...</span>
+                                @endif
                             </p>
 
                             <p class="text-muted mb-1">Release Date: {{ $date->format('M d, Y') }}</p>
