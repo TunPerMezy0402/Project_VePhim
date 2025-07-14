@@ -14,72 +14,85 @@
     <a href="{{ route('admin.movies.index') }}" class="btn btn-danger btn-sm mb-3">Back</a>
 
     <div class="card mb-3">
-        <div class="row g-0 align-items-center">
-            <!-- BÊN TRÁI: Hình ảnh -->
-            <div class="col-md-4">
-                <img class="img-fluid rounded-start" src="{{ asset('storage/' . $movie->image) }}" alt="Event Image">
-            </div>
-
-            <!-- BÊN PHẢI: Nội dung và nút -->
-            <div class="col-md-8">
-                <div class="card-body h-100 d-flex flex-column justify-content-between">
-                    <div>
-                        <!-- Video YouTube -->
-                        <div class="ratio ratio-16x9 mb-3">
-                            <iframe src="{{ $embedUrl }}" title="YouTube video" allowfullscreen></iframe>
-                        </div>
-
-                        <div class="d-flex mb-3">
-                            @php
-                            \Carbon\Carbon::setLocale('vi');
-                            $date = \Carbon\Carbon::parse($movie->release_date);
-                            @endphp
-                            <div class="calendar me-3">
-                                <span class="calendar-month">
-                                    <span class="p-2">{{ $date->format('Y') }}</span> {{
-                                    ucfirst($date->translatedFormat('F')) }}
-                                </span>
-                                <span class="calendar-day">{{ $date->format('d') }}</span>
-                            </div>
-                            <div class="flex-grow-1">
-                                <h5 class="fs-9"> {{ $movie->title }} </h5>
-                                <h4 class="mt-3">Đánh giá: ★★★★★</h4>
-                                <span class="fs-9 text-warning fw-semi-bold">$49.99 – $89.99</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-end d-flex flex-wrap justify-content-end gap-2">
-                        <!-- Like button -->
-                        <button class="btn btn-falcon-default btn-sm d-flex align-items-center" type="button">
-                            <i class="fas fa-heart text-danger me-1"></i> 235
-                        </button>
-
-                        <!-- Share button -->
-                        <button class="btn btn-falcon-default btn-sm d-flex align-items-center" type="button">
-                            <i class="fas fa-share-alt me-1"></i> Share
-                        </button>
-
-                        <!-- Update button -->
-                        <a href="{{ route('admin.movies.edit', $movie->id) }}"
-                            class="btn btn-falcon-primary btn-sm px-3">
-                            <i class="fas fa-edit me-1"></i> Update
-                        </a>
-
-                        <!-- Delete button inside form -->
-                        <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger d-flex align-items-center"
-                                onclick="return confirm('Bạn có chắc chắn muốn xóa phim này không?')">
-                                <i class="fas fa-trash-alt me-1"></i> Xóa
-                            </button>
-                        </form>
-                    </div>
-
+        <div class="row g-0">
+            <!-- BÊN TRÁI: Ảnh poster -->
+            <div class="col-md-4 p-3">
+                <div class="h-100">
+                    <img class="img-fluid rounded-start h-100 w-100" src="{{ asset('storage/' . $movie->image) }}"
+                        alt="Movie Poster" style="object-fit: cover; min-height: 300px;">
                 </div>
             </div>
 
+            <!-- BÊN PHẢI: Nội dung -->
+            <div class="col-md-8">
+                <div class="card-body h-100 d-flex flex-column">
+                    <!-- Video YouTube -->
+                    <div class="ratio ratio-16x9 mb-3">
+                        <iframe src="{{ $embedUrl }}" title="YouTube video" allowfullscreen class="rounded"></iframe>
+                    </div>
+
+                    <!-- Thông tin phim -->
+                    <div class="d-flex mb-3 flex-grow-1">
+                        @php
+                        \Carbon\Carbon::setLocale('vi');
+                        $date = \Carbon\Carbon::parse($movie->release_date);
+                        @endphp
+
+                        <div class="calendar me-3 flex-shrink-0">
+                            <span class="calendar-month">
+                                <span class="p-2">{{ $date->format('Y') }}</span>
+                                {{ ucfirst($date->translatedFormat('F')) }}
+                            </span>
+                            <span class="calendar-day">{{ $date->format('d') }}</span>
+                        </div>
+
+                        <div class="flex-grow-1">
+                            <h5 class="fs-4 mb-2">{{ $movie->title }}</h5>
+                            <div class="mb-2">
+                                <span class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="ms-2 text-muted">Đánh giá: 5/5</span>
+                            </div>
+                            <span class="fs-5 text-warning fw-bold">$49.99 – $89.99</span>
+                        </div>
+                    </div>
+
+                    <!-- Nút hành động -->
+                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                        <div>
+                            <button class="btn btn-outline-danger btn-sm me-2" type="button">
+                                <i class="fas fa-heart me-1"></i>235
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm" type="button">
+                                <i class="fas fa-share-alt me-1"></i>Share
+                            </button>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <!-- Nút cập nhật -->
+                            <a href="{{ route('admin.movies.edit', $movie->id) }}"
+                                class="btn btn-primary btn-sm d-flex align-items-center px-3">
+                                <i class="fas fa-edit me-1"></i> Cập nhật
+                            </a>
+
+                            <!-- Nút xóa -->
+                            <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST"
+                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa phim này không?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center px-3">
+                                    <i class="fas fa-trash-alt me-1"></i> Xóa
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

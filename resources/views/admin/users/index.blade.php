@@ -65,8 +65,8 @@
                         <td class="align-middle py-2" style="width: 28px;">
                             {{ $loop->iteration + ($users->currentPage() - 1) * $users->perPage() }}
                         </td>
-                        <td class="name align-middle white-space-nowrap py-2"><a
-                                href="{{ route('admin.users.show', $user->id) }}">
+                        <td class="name align-middle white-space-nowrap py-2">
+                            <a href="{{ route('admin.users.show', $user->id) }}">
                                 <div class="d-flex d-flex align-items-center">
                                     <div class="avatar avatar-xl me-2">
                                         <img class="rounded-circle" src="../../assets/img/team/2.jpg" alt="" />
