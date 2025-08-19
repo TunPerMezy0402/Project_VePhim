@@ -182,7 +182,7 @@
                         <label class="btn d-inline-block btn-navbar-style fs-10" for="themeSwitcherLight">
                             <span class="hover-overlay mb-2 rounded d-block">
                                 <img class="img-fluid img-prototype mb-0"
-                                    src="assets/img/generic/falcon-mode-default.jpg" alt="" />
+                                    src="{{ asset('assets/img/generic/falcon-mode-default.jpg') }}" alt="" />
                             </span>
                             <span class="label-text">Light</span>
                         </label>
@@ -192,7 +192,7 @@
                             data-theme-control="theme" />
                         <label class="btn d-inline-block btn-navbar-style fs-10" for="themeSwitcherDark">
                             <span class="hover-overlay mb-2 rounded d-block">
-                                <img class="img-fluid img-prototype mb-0" src="assets/img/generic/falcon-mode-dark.jpg"
+                                <img class="img-fluid img-prototype mb-0" src="{{ asset('assets/img/generic/falcon-mode-dark.jpg') }}"
                                     alt="" />
                             </span>
                             <span class="label-text">Dark</span>
@@ -203,7 +203,7 @@
                             data-theme-control="theme" />
                         <label class="btn d-inline-block btn-navbar-style fs-10" for="themeSwitcherAuto">
                             <span class="hover-overlay mb-2 rounded d-block">
-                                <img class="img-fluid img-prototype mb-0" src="assets/img/generic/falcon-mode-auto.jpg"
+                                <img class="img-fluid img-prototype mb-0" src="{{ asset('assets/img/generic/falcon-mode-auto.jpg') }}"
                                     alt="" />
                             </span>
                             <span class="label-text">Auto</span>
@@ -214,7 +214,7 @@
             <hr />
             <div class="d-flex justify-content-between">
                 <div class="d-flex align-items-start">
-                    <img class="me-2" src="assets/img/icons/left-arrow-from-left.svg" width="20" alt="" />
+                    <img class="me-2" src="{{ asset('assets/img/icons/left-arrow-from-left.svg') }}" width="20" alt="" />
                     <div class="flex-1">
                         <h5 class="fs-9">RTL Mode</h5>
                         <p class="fs-10 mb-0">Switch your language direction</p>
@@ -228,7 +228,7 @@
             <hr />
             <div class="d-flex justify-content-between">
                 <div class="d-flex align-items-start">
-                    <img class="me-2" src="assets/img/icons/arrows-h.svg" width="20" alt="" />
+                    <img class="me-2" src="{{ asset('assets/img/icons/arrows-h.svg') }}" width="20" alt="" />
                     <div class="flex-1">
                         <h5 class="fs-9">Fluid Layout</h5>
                         <p class="fs-10 mb-0">Toggle container layout system</p>
@@ -241,7 +241,7 @@
             </div>
             <hr />
             <div class="d-flex align-items-start">
-                <img class="me-2" src="assets/img/icons/paragraph.svg" width="20" alt="" />
+                <img class="me-2" src="{{ asset('assets/img/icons/paragraph.svg') }}" width="20" alt="" />
                 <div class="flex-1">
                     <h5 class="fs-9 d-flex align-items-center">Navigation Position</h5>
                     <p class="fs-10 mb-2">Select a suitable navigation system for your web application</p>
@@ -269,7 +269,7 @@
                         <input class="btn-check" id="navbar-style-transparent" type="radio" name="navbarStyle"
                             value="transparent" data-theme-control="navbarStyle" />
                         <label class="btn d-block w-100 btn-navbar-style fs-10" for="navbar-style-transparent">
-                            <img class="img-fluid img-prototype" src="assets/img/generic/default.png" alt="" />
+                            <img class="img-fluid img-prototype" src="{{ asset('assets/img/generic/default.png') }}" alt="" />
                             <span class="label-text">Transparent</span>
                         </label>
                     </div>
@@ -277,7 +277,7 @@
                         <input class="btn-check" id="navbar-style-inverted" type="radio" name="navbarStyle"
                             value="inverted" data-theme-control="navbarStyle" />
                         <label class="btn d-block w-100 btn-navbar-style fs-10" for="navbar-style-inverted">
-                            <img class="img-fluid img-prototype" src="assets/img/generic/inverted.png" alt="" />
+                            <img class="img-fluid img-prototype" src="{{ asset('assets/img/generic/inverted.png') }}" alt="" />
                             <span class="label-text">Inverted</span>
                         </label>
                     </div>
@@ -285,7 +285,7 @@
                         <input class="btn-check" id="navbar-style-card" type="radio" name="navbarStyle" value="card"
                             data-theme-control="navbarStyle" />
                         <label class="btn d-block w-100 btn-navbar-style fs-10" for="navbar-style-card">
-                            <img class="img-fluid img-prototype" src="assets/img/generic/card.png" alt="" />
+                            <img class="img-fluid img-prototype" src="{{ asset('assets/img/generic/card.png') }}" alt="" />
                             <span class="label-text">Card</span>
                         </label>
                     </div>
@@ -293,14 +293,14 @@
                         <input class="btn-check" id="navbar-style-vibrant" type="radio" name="navbarStyle"
                             value="vibrant" data-theme-control="navbarStyle" />
                         <label class="btn d-block w-100 btn-navbar-style fs-10" for="navbar-style-vibrant">
-                            <img class="img-fluid img-prototype" src="assets/img/generic/vibrant.png" alt="" />
+                            <img class="img-fluid img-prototype" src="{{ asset('assets/img/generic/vibrant.png') }}" alt="" />
                             <span class="label-text">Vibrant</span>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="text-center mt-5">
-                <img class="mb-4" src="assets/img/icons/spot-illustrations/47.png" alt="" width="120" />
+                <img class="mb-4" src="{{ asset('assets/img/icons/spot-illustrations/47.png') }}" alt="" width="120" />
                 <h5>Like What You See?</h5>
                 <p class="fs-10">Get Falcon now and create beautiful dashboards with hundreds of widgets.</p>
                 <a class="mb-3 btn btn-primary"

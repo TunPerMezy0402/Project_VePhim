@@ -101,7 +101,8 @@
                     </div>
                     <div class="col-md-9 d-flex justify-content-between align-items-end">
                         <div class="d-flex align-items-center gap-3">
-                            <span class="text-muted"><span id="resultsCount">{{ count($movies) }}</span> movies found</span>
+                            <span class="text-muted"><span id="resultsCount">{{ count($movies) }}</span> movies
+                                found</span>
                             <span class="badge bg-success" id="selectedCountBadge">
                                 <i class="fas fa-check me-1"></i><span id="selectedCount">0</span> selected
                             </span>
@@ -128,20 +129,20 @@
             <div class="card-body">
                 <div id="moviesGrid" class="row g-3">
                     @forelse($movies as $movie)
-                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12 movie-item" 
-                         data-id="{{ $movie->id }}" 
-                         data-title="{{ $movie->title }}"
-                         data-director="{{ $movie->director ? $movie->director->name : '' }}"
-                         data-genre-ids="{{ $movie->genres->pluck('id')->implode(',') }}"
-                         data-country-id="{{ $movie->country_id }}"
-                         data-year="{{ \Carbon\Carbon::parse($movie->release_date)->year }}"
-                         data-duration="{{ $movie->duration }}"
-                         data-pre-selected="{{ in_array($movie->id, $selectedMovieIds) ? 'true' : 'false' }}">
-                        <div class="movie-card border rounded-3 shadow-sm position-relative overflow-hidden {{ in_array($movie->id, $selectedMovieIds) ? 'pre-selected' : '' }}">
+                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-6 col-sm-12 movie-item" data-id="{{ $movie->id }}"
+                        data-title="{{ $movie->title }}"
+                        data-director="{{ $movie->director ? $movie->director->name : '' }}"
+                        data-genre-ids="{{ $movie->genres->pluck('id')->implode(',') }}"
+                        data-country-id="{{ $movie->country_id }}"
+                        data-year="{{ \Carbon\Carbon::parse($movie->release_date)->year }}"
+                        data-duration="{{ $movie->duration }}"
+                        data-pre-selected="{{ in_array($movie->id, $selectedMovieIds) ? 'true' : 'false' }}">
+                        <div
+                            class="movie-card border rounded-3 shadow-sm position-relative overflow-hidden {{ in_array($movie->id, $selectedMovieIds) ? 'pre-selected' : '' }}">
                             {{-- Hidden Checkbox --}}
                             <input class="movie-checkbox d-none" type="checkbox" name="movies[]"
                                 value="{{ $movie->id }}" id="movie_{{ $movie->id }}" {{ in_array($movie->id,
-                                $selectedMovieIds) ? 'checked' : '' }}>
+                            $selectedMovieIds) ? 'checked' : '' }}>
 
                             {{-- Pre-selected Badge (Blue) --}}
                             <div class="pre-selected-badge">
@@ -172,16 +173,20 @@
 
                             {{-- Info --}}
                             <div class="p-2">
-                                <h6 class="fw-bold mb-1 text-truncate" style="font-size: 0.9rem;">{{ $movie->title }}</h6>
+                                <h6 class="fw-bold mb-1 text-truncate" style="font-size: 0.9rem;">{{ $movie->title }}
+                                </h6>
                                 @if($movie->director)
-                                <div class="mb-1 text-truncate" style="font-size: 0.8rem;"><i class="fas fa-user-tie me-1"></i>{{ $movie->director->name }}</div>
+                                <div class="mb-1 text-truncate" style="font-size: 0.8rem;"><i
+                                        class="fas fa-user-tie me-1"></i>{{ $movie->director->name }}</div>
                                 @endif
                                 @if($movie->country)
-                                <div class="mb-1" style="font-size: 0.8rem;"><i class="fas fa-flag me-1"></i>{{ $movie->country->name }}</div>
+                                <div class="mb-1" style="font-size: 0.8rem;"><i class="fas fa-flag me-1"></i>{{
+                                    $movie->country->name }}</div>
                                 @endif
                                 <div class="mb-2" style="font-size: 0.8rem;"><i class="fas fa-calendar me-1"></i>{{
                                     \Carbon\Carbon::parse($movie->release_date)->format('M Y') }}</div>
-                                <span class="badge bg-dark" style="font-size: 0.7rem;"><i class="fas fa-clock me-1"></i>{{ $movie->duration }}
+                                <span class="badge bg-dark" style="font-size: 0.7rem;"><i
+                                        class="fas fa-clock me-1"></i>{{ $movie->duration }}
                                     min</span>
                             </div>
                         </div>
@@ -196,8 +201,9 @@
 
                 {{-- Submit Button --}}
                 <div class="text-end mt-4">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fas fa-calendar-plus me-1"></i>Schedule Selected Movies
+                    <button type="submit" class="btn btn-success"
+                        onclick="return confirm('Bạn chắc chắn muốn cập nhật chứ !')">
+                        <i class="fas fa-calendar-plus me-1"></i> Cập Nhật
                     </button>
                 </div>
             </div>
@@ -206,169 +212,195 @@
 </div>
 
 <style>
-.movie-card {
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.movie-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* DEFAULT: Pre-selected movies (already on schedule) - Blue border */
-.movie-card.pre-selected {
-    border-color: #0d6efd !important;
-    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25) !important;
-    background: linear-gradient(135deg, rgba(13, 110, 253, 0.05), rgba(13, 110, 253, 0.1));
-}
-
-/* STATE 2: Movies that are temporarily removed (pre-selected but unchecked) - Red border */
-.movie-card.temporarily-removed {
-    border-color: #dc3545 !important;
-    box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
-    background: linear-gradient(135deg, rgba(220, 53, 69, 0.05), rgba(220, 53, 69, 0.1));
-    opacity: 0.7;
-}
-
-/* STATE 3: Pre-selected movies that are restored after being temporarily removed - Orange border */
-.movie-card.pre-selected-restored {
-    border-color: #fd7e14 !important;
-    box-shadow: 0 0 0 2px rgba(253, 126, 20, 0.25) !important;
-    background: linear-gradient(135deg, rgba(253, 126, 20, 0.05), rgba(253, 126, 20, 0.1));
-}
-
-/* Newly selected movies (not pre-selected) - Green border */
-.movie-card.selected:not(.pre-selected):not(.pre-selected-restored) {
-    border-color: #198754 !important;
-    box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.25) !important;
-}
-
-.movie-image {
-    overflow: hidden;
-}
-
-.movie-image img {
-    transition: transform 0.3s ease;
-}
-
-.movie-card:hover .movie-image img {
-    transform: scale(1.05);
-}
-
-/* All badges are hidden by default */
-.pre-selected-badge,
-.pre-selected-restored-badge,
-.temporarily-removed-badge,
-.selected-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: white;
-    font-size: 11px;
-    padding: 4px 8px;
-    border-radius: 12px;
-    display: none;
-    font-weight: 600;
-    z-index: 10;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* STATE 1: Pre-selected badge (Blue) */
-.pre-selected-badge {
-    background: linear-gradient(45deg, #0d6efd, #3d8bfd);
-    box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
-}
-
-/* STATE 2: Temporarily removed badge (Red) */
-.temporarily-removed-badge {
-    background: linear-gradient(45deg, #dc3545, #e85a64);
-    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
-    cursor: pointer;
-}
-
-/* STATE 3: Pre-selected restored badge (Orange) */
-.pre-selected-restored-badge {
-    background: linear-gradient(45deg, #fd7e14, #fd9843);
-    box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
-}
-
-/* Newly selected badge (Green) */
-.selected-badge {
-    background: linear-gradient(45deg, #28a745, #34ce57);
-    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
-}
-
-/* Show appropriate badges based on card state */
-.movie-card.pre-selected .pre-selected-badge {
-    display: block;
-}
-
-.movie-card.temporarily-removed .temporarily-removed-badge {
-    display: block;
-    animation: shakeIn 0.3s ease;
-}
-
-.movie-card.pre-selected-restored .pre-selected-restored-badge {
-    display: block;
-    animation: bounceIn 0.3s ease;
-}
-
-.movie-card.selected:not(.pre-selected):not(.pre-selected-restored) .selected-badge {
-    display: block;
-    animation: bounceIn 0.3s ease;
-}
-
-/* Hover effect for temporarily removed badge */
-.temporarily-removed-badge:hover {
-    background: linear-gradient(45deg, #a02832, #c94855);
-    transform: scale(1.05);
-}
-
-@keyframes shakeIn {
-    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
-    50% { transform: scale(1.05) rotate(5deg); }
-    70% { transform: scale(0.9) rotate(-3deg); }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
-}
-
-@keyframes bounceIn {
-    0% { transform: scale(0.3); opacity: 0; }
-    50% { transform: scale(1.05); }
-    70% { transform: scale(0.9); }
-    100% { transform: scale(1); opacity: 1; }
-}
-
-@media (max-width: 768px) {
-    .movie-image img {
-        height: 150px !important;
-    }
-    
-    .movie-card .p-2 {
-        padding: 0.75rem !important;
-    }
-}
-
-@media (min-width: 1400px) {
     .movie-card {
-        min-height: 280px;
+        transition: all 0.3s ease;
+        cursor: pointer;
     }
-}
 
-@media (max-width: 576px) {
-    .movie-card .p-2 h6 {
-        font-size: 0.85rem !important;
+    .movie-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
     }
-    
-    .movie-card .p-2 div {
-        font-size: 0.75rem !important;
+
+    /* DEFAULT: Pre-selected movies (already on schedule) - Blue border */
+    .movie-card.pre-selected {
+        border-color: #0d6efd !important;
+        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.25) !important;
+        background: linear-gradient(135deg, rgba(13, 110, 253, 0.05), rgba(13, 110, 253, 0.1));
     }
-}
+
+    /* STATE 2: Movies that are temporarily removed (pre-selected but unchecked) - Red border */
+    .movie-card.temporarily-removed {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25) !important;
+        background: linear-gradient(135deg, rgba(220, 53, 69, 0.05), rgba(220, 53, 69, 0.1));
+        opacity: 0.7;
+    }
+
+    /* STATE 3: Pre-selected movies that are restored after being temporarily removed - Orange border */
+    .movie-card.pre-selected-restored {
+        border-color: #fd7e14 !important;
+        box-shadow: 0 0 0 2px rgba(253, 126, 20, 0.25) !important;
+        background: linear-gradient(135deg, rgba(253, 126, 20, 0.05), rgba(253, 126, 20, 0.1));
+    }
+
+    /* Newly selected movies (not pre-selected) - Green border */
+    .movie-card.selected:not(.pre-selected):not(.pre-selected-restored) {
+        border-color: #198754 !important;
+        box-shadow: 0 0 0 2px rgba(25, 135, 84, 0.25) !important;
+    }
+
+    .movie-image {
+        overflow: hidden;
+    }
+
+    .movie-image img {
+        transition: transform 0.3s ease;
+    }
+
+    .movie-card:hover .movie-image img {
+        transform: scale(1.05);
+    }
+
+    /* All badges are hidden by default */
+    .pre-selected-badge,
+    .pre-selected-restored-badge,
+    .temporarily-removed-badge,
+    .selected-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 12px;
+        display: none;
+        font-weight: 600;
+        z-index: 10;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* STATE 1: Pre-selected badge (Blue) */
+    .pre-selected-badge {
+        background: linear-gradient(45deg, #0d6efd, #3d8bfd);
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.3);
+    }
+
+    /* STATE 2: Temporarily removed badge (Red) */
+    .temporarily-removed-badge {
+        background: linear-gradient(45deg, #dc3545, #e85a64);
+        box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+        cursor: pointer;
+    }
+
+    /* STATE 3: Pre-selected restored badge (Orange) */
+    .pre-selected-restored-badge {
+        background: linear-gradient(45deg, #fd7e14, #fd9843);
+        box-shadow: 0 2px 8px rgba(253, 126, 20, 0.3);
+    }
+
+    /* Newly selected badge (Green) */
+    .selected-badge {
+        background: linear-gradient(45deg, #28a745, #34ce57);
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+    }
+
+    /* Show appropriate badges based on card state */
+    .movie-card.pre-selected .pre-selected-badge {
+        display: block;
+    }
+
+    .movie-card.temporarily-removed .temporarily-removed-badge {
+        display: block;
+        animation: shakeIn 0.3s ease;
+    }
+
+    .movie-card.pre-selected-restored .pre-selected-restored-badge {
+        display: block;
+        animation: bounceIn 0.3s ease;
+    }
+
+    .movie-card.selected:not(.pre-selected):not(.pre-selected-restored) .selected-badge {
+        display: block;
+        animation: bounceIn 0.3s ease;
+    }
+
+    /* Hover effect for temporarily removed badge */
+    .temporarily-removed-badge:hover {
+        background: linear-gradient(45deg, #a02832, #c94855);
+        transform: scale(1.05);
+    }
+
+    @keyframes shakeIn {
+        0% {
+            transform: scale(0.3) rotate(-10deg);
+            opacity: 0;
+        }
+
+        50% {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        70% {
+            transform: scale(0.9) rotate(-3deg);
+        }
+
+        100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes bounceIn {
+        0% {
+            transform: scale(0.3);
+            opacity: 0;
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+
+        70% {
+            transform: scale(0.9);
+        }
+
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .movie-image img {
+            height: 150px !important;
+        }
+
+        .movie-card .p-2 {
+            padding: 0.75rem !important;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .movie-card {
+            min-height: 280px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .movie-card .p-2 h6 {
+            font-size: 0.85rem !important;
+        }
+
+        .movie-card .p-2 div {
+            font-size: 0.75rem !important;
+        }
+    }
 </style>
 
 <script>
-class MovieSelector {
+    class MovieSelector {
     constructor() {
         this.selectedMovies = new Set();
         this.preSelectedMovies = new Set();

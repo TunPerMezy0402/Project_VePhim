@@ -1,141 +1,119 @@
-
 <nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none;">
     <script>
         var navbarStyle = localStorage.getItem("navbarStyle");
-              if (navbarStyle && navbarStyle !== 'transparent') {
-                document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
-              }
+        if (navbarStyle && navbarStyle !== 'transparent') {
+            document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
+        }
     </script>
+
+    <!-- Logo + Toggle -->
     <div class="d-flex align-items-center">
         <div class="toggle-icon-wrapper">
             <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip"
                 data-bs-placement="left" title="Toggle Navigation">
                 <span class="navbar-toggle-icon">
-                    <span class="toggle-line">
-                    </span>
+                    <span class="toggle-line"></span>
                 </span>
             </button>
         </div>
         <a class="navbar-brand" href="{{ route('admin.index') }}">
             <div class="d-flex align-items-center py-3">
-                <img class="me-2" src="{{ asset('assets/img/logos/Wingman.png') }}" alt="" width="60" />
-                <span class="font-sans-serif text-primary">Wing</span>
+                <img class="me-2" src="{{ asset('assets/img/logos/logoheader.png') }}" alt="" width="60" />
+                <span class="font-sans-serif text-white">MiNiBo</span>
             </div>
         </a>
     </div>
+
+    <!-- Menu -->
     <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
         <div class="navbar-vertical-content scrollbar">
             <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+
+                <!-- Label -->
                 <li class="nav-item">
-                    <!-- label-->
                     <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
                         <div class="col-auto navbar-vertical-label">App</div>
                         <div class="col ps-0">
                             <hr class="mb-0 navbar-vertical-divider" />
                         </div>
                     </div>
-                    <!-- parent pages-->
-                    <a class="nav-link" href="{{ route('admin.users.index') }}" role="button">
+                </li>
+
+                <!-- Quản lý người dùng -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.users.index') }}">
                         <div class="d-flex align-items-center">
-                            <span class="nav-link-icon">
-                                <span class="fas fa-calendar-alt">
-                                </span>
-                            </span>
+                            <span class="nav-link-icon"><i class="fas fa-users"></i></span>
                             <span class="nav-link-text ps-1">Quản Lý Người Dùng</span>
                         </div>
                     </a>
-                    <!-- Quản Lý Phim -->
-                    <a class="nav-link dropdown-indicator" href="#movies" role="button" data-bs-toggle="collapse"
-                        aria-expanded="false" aria-controls="movies">
+                </li>
+
+                <!-- Quản lý phim -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.movies.index') }}">
                         <div class="d-flex align-items-center">
-                            <span class="nav-link-icon">
-                                <span class="fas fa-envelope-open">
-                                </span>
-                            </span>
+                            <span class="nav-link-icon"><i class="fas fa-film"></i></span>
                             <span class="nav-link-text ps-1">Quản Lý Phim</span>
                         </div>
                     </a>
-                    <ul class="nav collapse" id="movies">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.movies.create') }}">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-text ps-1">Thêm Phim</span>
-                                </div>
-                            </a>
-                            <!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.movies.index') }}">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-text ps-1">Danh Sách Phim</span>
-                                </div>
-                            </a>
-                            <!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link dropdown-indicator" href="#onemies" role="button"
-                                data-bs-toggle="collapse" aria-expanded="false" aria-controls="onemies">
-                                <div class="d-flex align-items-center">
-                                    <span class="nav-link-icon">
-                                        <span class="fas fa-envelope-open">
-                                        </span>
-                                    </span>
-                                    <span class="nav-link-text ps-1">Biến Thể Phim</span>
-                                </div>
-                            </a>
+                </li>
 
-                            <ul class="nav collapse" id="onemies">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.countries.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-text ps-1">Quốc Gia</span>
-                                        </div>
-                                    </a>
-                                    <!-- more inner pages-->
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.actors.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-text ps-1">Diễn Viên</span>
-                                        </div>
-                                    </a>
-                                    <!-- more inner pages-->
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.genres.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-text ps-1">Thể Loại</span>
-                                        </div>
-                                    </a>
-                                    <!-- more inner pages-->
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.directors.index') }}">
-                                        <div class="d-flex align-items-center">
-                                            <span class="nav-link-text ps-1">Đạo Diễn</span>
-                                        </div>
-                                    </a>
-                                    <!-- more inner pages-->
-                                </li>
-                            </ul>
-                            <!-- more inner pages-->
-                        </li>
-                    </ul>
-                    <!-- Quản Lý Rạp-->
+                <!-- Quản lý rạp -->
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.cinemas.index') }}">
                         <div class="d-flex align-items-center">
-                            <span class="nav-link-icon">
-                                <span class="fas fa-envelope-open">
-                                </span>
-                            </span>
+                            <span class="nav-link-icon"><i class="fas fa-building"></i></span>
                             <span class="nav-link-text ps-1">Quản Lý Rạp</span>
                         </div>
                     </a>
+                </li>
+
+                <!-- Biến thể phim -->
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#onemies" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="onemies">
+                        <div class="d-flex align-items-center">
+                            <span class="nav-link-icon"><i class="fas fa-tags"></i></span>
+                            <span class="nav-link-text ps-1">Quản Lý Biến Thể</span>
+                        </div>
+                    </a>
+                    <ul class="nav collapse" id="onemies">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.countries.index') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1">Quốc Gia</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.actors.index') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1">Diễn Viên</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.genres.index') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1">Thể Loại</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.directors.index') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1">Đạo Diễn</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
+
 <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand-lg" style="display: none;">
     <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button"
         data-bs-toggle="collapse" data-bs-target="#navbarStandard" aria-controls="navbarStandard" aria-expanded="false"
@@ -147,7 +125,7 @@
     </button>
     <a class="navbar-brand me-1 me-sm-3" href="index.html">
         <div class="d-flex align-items-center">
-            <img class="me-2" src="assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" />
+            <img class="me-2" src="{{asset('assets/img/icons/spot-illustrations/falcon.png') }}" alt="" width="40" />
             <span class="font-sans-serif text-primary">falcon</span>
         </div>
     </a>

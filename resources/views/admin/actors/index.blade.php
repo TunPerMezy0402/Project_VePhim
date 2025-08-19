@@ -11,7 +11,7 @@
     <div class="card-header">
         <div class="row flex-between-center">
             <div class="col-12 col-md-6 col-xl-5 d-flex align-items-center gap-3 flex-wrap">
-                <h5 class="fs-9 mb-0 text-nowrap py-2 py-xl-0">Customers</h5>
+                <h5 class="fs-9 mb-0 text-nowrap py-2 py-xl-0">Tác Gỉa</h5>
                 <form action="{{ route('admin.actors.index') }}" method="GET" class="w-100 w-md-auto">
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control" name="search" placeholder="Search ..."

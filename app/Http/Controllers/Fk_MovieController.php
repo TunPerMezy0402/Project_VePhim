@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cinema;
+use App\Models\Movie;
 use App\Models\Actor;
 use App\Models\Genre;
-use App\Models\Movie;
 use App\Models\Country;
 use App\Models\Director;
 
@@ -43,30 +43,24 @@ class Fk_MovieController extends Controller
 
         $query = Movie::query();
 
-        // Lọc theo thể loại (many-to-many)
         if ($request->filled('genre_id')) {
             $query->whereHas('genres', fn($q) => $q->where('genres.id', $request->genre_id));
         }
 
-        // Lọc theo diễn viên (many-to-many)
         if ($request->filled('actor_id')) {
             $query->whereHas('actors', fn($q) => $q->where('actors.id', $request->actor_id));
         }
 
-        // Lọc theo quốc gia
         if ($request->filled('country_id')) {
             $query->where('country_id', $request->country_id);
         }
 
-        // Lọc theo đạo diễn
         if ($request->filled('director_id')) {
             $query->where('director_id', $request->director_id);
         }
 
-        // Phân trang 6 phần tử mỗi trang
         $movies = $query->latest()->paginate(6)->withQueryString();
 
-        // Lấy danh sách movie_id đã gán cho cinema
         $selectedMovieIds = $cinema->movies->pluck('id')->toArray();
 
         return view('admin.fk_movies.create', [

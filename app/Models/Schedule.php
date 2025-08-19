@@ -12,7 +12,8 @@ class Schedule extends Model
     protected $fillable = [
         'movie_id',
         'room_id',
-        'schedule_time',
+        'day_time',
+        'schedule_time_id',
         'end_time',
         'base_price',
     ];
@@ -26,4 +27,10 @@ class Schedule extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function scheduleTime()
+    {
+        return $this->belongsTo(ScheduleTime::class, 'schedule_time_id');
+    }
+    
 }

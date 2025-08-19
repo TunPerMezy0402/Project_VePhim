@@ -1,960 +1,320 @@
 @extends('admin.layouts.AdminLayout')
 
 @section('content')
-<div class="row g-3 mb-3">
-    <div class="col-md-6 col-xxl-3">
-        <div class="card h-md-100 ecommerce-card-min-width">
-            <div class="card-header pb-0">
-                <h6 class="mb-0 mt-2 d-flex align-items-center">Weekly Sales
-                    <span class="ms-1 text-400" data-bs-toggle="tooltip" data-bs-placement="top"
-                        title="Calculated according to last week's sales">
-                        <span class="far fa-question-circle" data-fa-transform="shrink-1">
-                        </span>
-                    </span>
-                </h6>
-            </div>
-            <div class="card-body d-flex flex-column justify-content-end">
-                <div class="row">
-                    <div class="col">
-                        <p class="font-sans-serif lh-1 mb-1 fs-5">$47K</p>
-                        <span class="badge badge-subtle-success rounded-pill fs-11">+3.5%</span>
-                    </div>
-                    <div class="col-auto ps-0">
-                        <div class="echart-bar-weekly-sales h-100">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card h-md-100">
-            <div class="card-header pb-0">
-                <h6 class="mb-0 mt-2">Total Order</h6>
-            </div>
-            <div class="card-body d-flex flex-column justify-content-end">
-                <div class="row justify-content-between">
-                    <div class="col-auto align-self-end">
-                        <div class="fs-5 fw-normal font-sans-serif text-700 lh-1 mb-1">58.4K</div>
-                        <span class="badge rounded-pill fs-11 bg-200 text-primary">
-                            <span class="fas fa-caret-up me-1">
-                            </span>13.6%</span>
-                    </div>
-                    <div class="col-auto ps-0 mt-n4">
-                        <div class="echart-default-total-order"
-                            data-echarts='{"tooltip":{"trigger":"axis","formatter":"{b0} : {c0}"},"xAxis":{"data":["Week 4","Week 5","Week 6","Week 7"]},"series":[{"type":"line","data":[20,40,100,120],"smooth":true,"lineStyle":{"width":3}}],"grid":{"bottom":"2%","top":"2%","right":"0","left":"10px"}}'
-                            data-echart-responsive="true">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card h-md-100">
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
             <div class="card-body">
-                <div class="row h-100 justify-content-between g-0">
-                    <div class="col-5 col-sm-6 col-xxl pe-2">
-                        <h6 class="mt-1">Market Share</h6>
-                        <div class="fs-11 mt-3">
-                            <div class="d-flex flex-between-center mb-1">
-                                <div class="d-flex align-items-center">
-                                    <span class="dot bg-primary">
-                                    </span>
-                                    <span class="fw-semi-bold">Samsung</span>
-                                </div>
-                                <div class="d-xxl-none">33%</div>
-                            </div>
-                            <div class="d-flex flex-between-center mb-1">
-                                <div class="d-flex align-items-center">
-                                    <span class="dot bg-info">
-                                    </span>
-                                    <span class="fw-semi-bold">Huawei</span>
-                                </div>
-                                <div class="d-xxl-none">29%</div>
-                            </div>
-                            <div class="d-flex flex-between-center mb-1">
-                                <div class="d-flex align-items-center">
-                                    <span class="dot bg-300">
-                                    </span>
-                                    <span class="fw-semi-bold">Apple</span>
-                                </div>
-                                <div class="d-xxl-none">20%</div>
-                            </div>
-                        </div>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Earnings (Monthly)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                     </div>
-                    <div class="col-auto position-relative">
-                        <div class="echart-market-share">
-                        </div>
-                        <div class="position-absolute top-50 start-50 translate-middle text-1100 fs-7">
-                            26M</div>
+                    <div class="col-auto">
+                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-xxl-3">
-        <div class="card h-md-100">
-            <div class="card-header d-flex flex-between-center pb-0">
-                <h6 class="mb-0">Weather</h6>
-                <div class="dropdown font-sans-serif btn-reveal-trigger">
-                    <button
-                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                        type="button" id="dropdown-weather-update" data-bs-toggle="dropdown"
-                        data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                        <span class="fas fa-ellipsis-h fs-11">
-                        </span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end border py-2"
-                        aria-labelledby="dropdown-weather-update">
-                        <a class="dropdown-item" href="#!">View</a>
-                        <a class="dropdown-item" href="#!">Export</a>
-                        <div class="dropdown-divider">
-                        </div>
-                        <a class="dropdown-item text-danger" href="#!">Remove</a>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Earnings (Annual)</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
-            <div class="card-body pt-2">
-                <div class="row g-0 h-100 align-items-center">
-                    <div class="col">
-                        <div class="d-flex align-items-center">
-                            <img class="me-3" src="assets/img/icons/weather-icon.png" alt=""
-                                height="60" />
-                            <div>
-                                <h6 class="mb-2">New York City</h6>
-                                <div class="fs-11 fw-semi-bold">
-                                    <div class="text-warning">Sunny</div>Precipitation: 50%
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
+                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-auto text-center ps-2">
-                        <div class="fs-5 fw-normal font-sans-serif text-primary mb-1 lh-1">31&deg;</div>
-                        <div class="fs-10 text-800">32&deg; / 25&deg;</div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                            Pending Requests</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-comments fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row g-0">
-    <div class="col-lg-6 pe-lg-2 mb-3">
-        <div class="card h-lg-100 overflow-hidden">
-            <div class="card-header bg-body-tertiary">
-                <div class="row align-items-center">
-                    <div class="col">
-                        <h6 class="mb-0">Running Projects</h6>
-                    </div>
-                    <div class="col-auto text-center pe-x1">
-                        <select class="form-select form-select-sm">
-                            <option>Working Time</option>
-                            <option>Estimated Time</option>
-                            <option>Billable Time</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body p-0">
-                <div class="row g-0 align-items-center py-2 position-relative border-bottom border-200">
-                    <div class="col ps-x1 py-1 position-static">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl me-3">
-                                <div class="avatar-name rounded-circle bg-primary-subtle text-dark">
-                                    <span class="fs-9 text-primary">F</span>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <h6 class="mb-0 d-flex align-items-center">
-                                    <a class="text-800 stretched-link" href="#!">Falcon</a>
-                                    <span class="badge rounded-pill ms-2 bg-200 text-primary">38%</span>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col py-1">
-                        <div class="row flex-end-center g-0">
-                            <div class="col-auto pe-2">
-                                <div class="fs-10 fw-semi-bold">12:50:00</div>
-                            </div>
-                            <div class="col-5 pe-x1 ps-2">
-                                <div class="progress bg-200 me-2" style="height: 5px;"
-                                    role="progressbar" aria-valuenow="38" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar rounded-pill" style="width: 38%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-0 align-items-center py-2 position-relative border-bottom border-200">
-                    <div class="col ps-x1 py-1 position-static">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl me-3">
-                                <div class="avatar-name rounded-circle bg-success-subtle text-dark">
-                                    <span class="fs-9 text-success">R</span>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <h6 class="mb-0 d-flex align-items-center">
-                                    <a class="text-800 stretched-link" href="#!">Reign</a>
-                                    <span class="badge rounded-pill ms-2 bg-200 text-primary">79%</span>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col py-1">
-                        <div class="row flex-end-center g-0">
-                            <div class="col-auto pe-2">
-                                <div class="fs-10 fw-semi-bold">25:20:00</div>
-                            </div>
-                            <div class="col-5 pe-x1 ps-2">
-                                <div class="progress bg-200 me-2" style="height: 5px;"
-                                    role="progressbar" aria-valuenow="79" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar rounded-pill" style="width: 79%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-0 align-items-center py-2 position-relative border-bottom border-200">
-                    <div class="col ps-x1 py-1 position-static">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl me-3">
-                                <div class="avatar-name rounded-circle bg-info-subtle text-dark">
-                                    <span class="fs-9 text-info">B</span>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <h6 class="mb-0 d-flex align-items-center">
-                                    <a class="text-800 stretched-link" href="#!">Boots4</a>
-                                    <span class="badge rounded-pill ms-2 bg-200 text-primary">90%</span>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col py-1">
-                        <div class="row flex-end-center g-0">
-                            <div class="col-auto pe-2">
-                                <div class="fs-10 fw-semi-bold">58:20:00</div>
-                            </div>
-                            <div class="col-5 pe-x1 ps-2">
-                                <div class="progress bg-200 me-2" style="height: 5px;"
-                                    role="progressbar" aria-valuenow="90" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar rounded-pill" style="width: 90%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-0 align-items-center py-2 position-relative border-bottom border-200">
-                    <div class="col ps-x1 py-1 position-static">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl me-3">
-                                <div class="avatar-name rounded-circle bg-warning-subtle text-dark">
-                                    <span class="fs-9 text-warning">R</span>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <h6 class="mb-0 d-flex align-items-center">
-                                    <a class="text-800 stretched-link" href="#!">Raven</a>
-                                    <span class="badge rounded-pill ms-2 bg-200 text-primary">40%</span>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col py-1">
-                        <div class="row flex-end-center g-0">
-                            <div class="col-auto pe-2">
-                                <div class="fs-10 fw-semi-bold">21:20:00</div>
-                            </div>
-                            <div class="col-5 pe-x1 ps-2">
-                                <div class="progress bg-200 me-2" style="height: 5px;"
-                                    role="progressbar" aria-valuenow="40" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar rounded-pill" style="width: 40%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-0 align-items-center py-2 position-relative">
-                    <div class="col ps-x1 py-1 position-static">
-                        <div class="d-flex align-items-center">
-                            <div class="avatar avatar-xl me-3">
-                                <div class="avatar-name rounded-circle bg-danger-subtle text-dark">
-                                    <span class="fs-9 text-danger">S</span>
-                                </div>
-                            </div>
-                            <div class="flex-1">
-                                <h6 class="mb-0 d-flex align-items-center">
-                                    <a class="text-800 stretched-link" href="#!">Slick</a>
-                                    <span class="badge rounded-pill ms-2 bg-200 text-primary">70%</span>
-                                </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col py-1">
-                        <div class="row flex-end-center g-0">
-                            <div class="col-auto pe-2">
-                                <div class="fs-10 fw-semi-bold">31:20:00</div>
-                            </div>
-                            <div class="col-5 pe-x1 ps-2">
-                                <div class="progress bg-200 me-2" style="height: 5px;"
-                                    role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar rounded-pill" style="width: 70%">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+<!-- Content Row -->
+
+<div class="row">
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                 </div>
             </div>
-            <div class="card-footer bg-body-tertiary p-0">
-                <a class="btn btn-sm btn-link d-block w-100 py-2" href="#!">Show all projects
-                    <span class="fas fa-chevron-right ms-1 fs-11">
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                </div>
+                <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-primary"></i> Direct
                     </span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 ps-lg-2 mb-3">
-        <div class="card h-lg-100">
-            <div class="card-header">
-                <div class="row flex-between-center">
-                    <div class="col-auto">
-                        <h6 class="mb-0">Total Sales</h6>
-                    </div>
-                    <div class="col-auto d-flex">
-                        <select class="form-select form-select-sm select-month me-2">
-                            <option value="0">January</option>
-                            <option value="1">February</option>
-                            <option value="2">March</option>
-                            <option value="3">April</option>
-                            <option value="4">May</option>
-                            <option value="5">Jun</option>
-                            <option value="6">July</option>
-                            <option value="7">August</option>
-                            <option value="8">September</option>
-                            <option value="9">October</option>
-                            <option value="10">November</option>
-                            <option value="11">December</option>
-                        </select>
-                        <div class="dropdown font-sans-serif btn-reveal-trigger">
-                            <button
-                                class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                                type="button" id="dropdown-total-sales" data-bs-toggle="dropdown"
-                                data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-ellipsis-h fs-11">
-                                </span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end border py-2"
-                                aria-labelledby="dropdown-total-sales">
-                                <a class="dropdown-item" href="#!">View</a>
-                                <a class="dropdown-item" href="#!">Export</a>
-                                <div class="dropdown-divider">
-                                </div>
-                                <a class="dropdown-item text-danger" href="#!">Remove</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body h-100 pe-0">
-                <!-- Find the JS file for the following chart at: src\js\charts\echarts\total-sales.js-->
-                <!-- If you are not using gulp based workflow, you can find the transpiled code at: public\assets\js\theme.js-->
-                <div class="echart-line-total-sales h-100" data-echart-responsive="true">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row g-0">
-    <div class="col-lg-6 col-xl-7 col-xxl-8 mb-3 pe-lg-2 mb-3">
-        <div class="card h-lg-100">
-            <div class="card-body d-flex align-items-center">
-                <div class="w-100">
-                    <h6 class="mb-3 text-800">Using Storage
-                        <strong class="text-1100">1775.06 MB</strong>of 2 GB
-                    </h6>
-                    <div class="progress-stacked mb-3 rounded-3" style="height: 10px;">
-                        <div class="progress" style="width: 43.72%;" role="progressbar"
-                            aria-valuenow="43.72" aria-valuemin="0" aria-valuemax="100">
-                            <div
-                                class="progress-bar bg-progress-gradient border-end border-100 border-2">
-                            </div>
-                        </div>
-                        <div class="progress" style="width: 18.76%;" role="progressbar"
-                            aria-valuenow="18.76" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-info border-end border-100 border-2">
-                            </div>
-                        </div>
-                        <div class="progress" style="width: 9.38%;" role="progressbar"
-                            aria-valuenow="9.38" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-success border-end border-100 border-2">
-                            </div>
-                        </div>
-                        <div class="progress" style="width: 28.14%;" role="progressbar"
-                            aria-valuenow="28.14" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-200">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row fs-10 fw-semi-bold text-500 g-0">
-                        <div class="col-auto d-flex align-items-center pe-3">
-                            <span class="dot bg-primary">
-                            </span>
-                            <span>Regular</span>
-                            <span
-                                class="d-none d-md-inline-block d-lg-none d-xxl-inline-block">(895MB)</span>
-                        </div>
-                        <div class="col-auto d-flex align-items-center pe-3">
-                            <span class="dot bg-info">
-                            </span>
-                            <span>System</span>
-                            <span
-                                class="d-none d-md-inline-block d-lg-none d-xxl-inline-block">(379MB)</span>
-                        </div>
-                        <div class="col-auto d-flex align-items-center pe-3">
-                            <span class="dot bg-success">
-                            </span>
-                            <span>Shared</span>
-                            <span
-                                class="d-none d-md-inline-block d-lg-none d-xxl-inline-block">(192MB)</span>
-                        </div>
-                        <div class="col-auto d-flex align-items-center">
-                            <span class="dot bg-200">
-                            </span>
-                            <span>Free</span>
-                            <span
-                                class="d-none d-md-inline-block d-lg-none d-xxl-inline-block">(576MB)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6 col-xl-5 col-xxl-4 mb-3 ps-lg-2">
-        <div class="card h-lg-100">
-            <div class="bg-holder bg-card"
-                style="background-image:url(assets/img/icons/spot-illustrations/corner-1.png);">
-            </div>
-            <!--/.bg-holder-->
-            <div class="card-body position-relative">
-                <h5 class="text-warning">Running out of your space?</h5>
-                <p class="fs-10 mb-0">Your storage will be running out soon. Get more space and powerful
-                    productivity features.</p>
-                <a class="btn btn-link fs-10 text-warning mt-lg-3 ps-0" href="#!">Upgrade storage
-                    <span class="fas fa-chevron-right ms-1" data-fa-transform="shrink-4 down-1">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i> Social
                     </span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row g-0">
-    <div class="col-lg-7 col-xl-8 pe-lg-2 mb-3">
-        <div class="card h-lg-100 overflow-hidden">
-            <div class="card-body p-0">
-                <div class="table-responsive scrollbar">
-                    <table class="table table-dashboard mb-0 table-borderless fs-10 border-200">
-                        <thead class="bg-body-tertiary">
-                            <tr>
-                                <th class="text-900">Best Selling Products</th>
-                                <th class="text-900 text-end">Revenue ($3333)</th>
-                                <th class="text-900 pe-x1 text-end" style="width: 8rem">Revenue (%)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-bottom border-200">
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <img class="rounded-1 border border-200"
-                                            src="assets/img/products/12.png" width="60" alt="" />
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-1 fw-semi-bold">
-                                                <a class="text-1100 stretched-link" href="#!">Raven
-                                                    Pro</a>
-                                            </h6>
-                                            <p class="fw-semi-bold mb-0 text-500">Landing</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-end fw-semi-bold">$1311</td>
-                                <td class="align-middle pe-x1">
-                                    <div class="d-flex align-items-center">
-                                        <div class="progress me-3 rounded-3 bg-200"
-                                            style="height: 5px; width:80px;" role="progressbar"
-                                            aria-valuenow="39" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar rounded-pill" style="width: 39%;">
-                                            </div>
-                                        </div>
-                                        <div class="fw-semi-bold ms-2">39%</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-bottom border-200">
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <img class="rounded-1 border border-200"
-                                            src="assets/img/products/10.png" width="60" alt="" />
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-1 fw-semi-bold">
-                                                <a class="text-1100 stretched-link" href="#!">Boots4</a>
-                                            </h6>
-                                            <p class="fw-semi-bold mb-0 text-500">Portfolio</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-end fw-semi-bold">$860</td>
-                                <td class="align-middle pe-x1">
-                                    <div class="d-flex align-items-center">
-                                        <div class="progress me-3 rounded-3 bg-200"
-                                            style="height: 5px; width:80px;" role="progressbar"
-                                            aria-valuenow="26" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar rounded-pill" style="width: 26%;">
-                                            </div>
-                                        </div>
-                                        <div class="fw-semi-bold ms-2">26%</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-bottom border-200">
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <img class="rounded-1 border border-200"
-                                            src="assets/img/products/11.png" width="60" alt="" />
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-1 fw-semi-bold">
-                                                <a class="text-1100 stretched-link" href="#!">Falcon</a>
-                                            </h6>
-                                            <p class="fw-semi-bold mb-0 text-500">Admin</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-end fw-semi-bold">$539</td>
-                                <td class="align-middle pe-x1">
-                                    <div class="d-flex align-items-center">
-                                        <div class="progress me-3 rounded-3 bg-200"
-                                            style="height: 5px; width:80px;" role="progressbar"
-                                            aria-valuenow="16" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar rounded-pill" style="width: 16%;">
-                                            </div>
-                                        </div>
-                                        <div class="fw-semi-bold ms-2">16%</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-bottom border-200">
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <img class="rounded-1 border border-200"
-                                            src="assets/img/products/14.png" width="60" alt="" />
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-1 fw-semi-bold">
-                                                <a class="text-1100 stretched-link" href="#!">Slick</a>
-                                            </h6>
-                                            <p class="fw-semi-bold mb-0 text-500">Builder</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-end fw-semi-bold">$343</td>
-                                <td class="align-middle pe-x1">
-                                    <div class="d-flex align-items-center">
-                                        <div class="progress me-3 rounded-3 bg-200"
-                                            style="height: 5px; width:80px;" role="progressbar"
-                                            aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar rounded-pill" style="width: 10%;">
-                                            </div>
-                                        </div>
-                                        <div class="fw-semi-bold ms-2">10%</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <img class="rounded-1 border border-200"
-                                            src="assets/img/products/13.png" width="60" alt="" />
-                                        <div class="flex-1 ms-3">
-                                            <h6 class="mb-1 fw-semi-bold">
-                                                <a class="text-1100 stretched-link" href="#!">Reign
-                                                    Pro</a>
-                                            </h6>
-                                            <p class="fw-semi-bold mb-0 text-500">Agency</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="align-middle text-end fw-semi-bold">$280</td>
-                                <td class="align-middle pe-x1">
-                                    <div class="d-flex align-items-center">
-                                        <div class="progress me-3 rounded-3 bg-200"
-                                            style="height: 5px; width:80px;" role="progressbar"
-                                            aria-valuenow="8" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-bar rounded-pill" style="width: 8%;">
-                                            </div>
-                                        </div>
-                                        <div class="fw-semi-bold ms-2">8%</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="card-footer bg-body-tertiary py-2">
-                <div class="row flex-between-center">
-                    <div class="col-auto">
-                        <select class="form-select form-select-sm">
-                            <option>Last 7 days</option>
-                            <option>Last Month</option>
-                            <option>Last Year</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <a class="btn btn-sm btn-falcon-default" href="#!">View All</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-5 col-xl-4 ps-lg-2 mb-3">
-        <div class="card h-100">
-            <div class="card-header d-flex flex-between-center bg-body-tertiary py-2">
-                <h6 class="mb-0">Shared Files</h6>
-                <a class="py-1 fs-10 font-sans-serif" href="#!">View All</a>
-            </div>
-            <div class="card-body pb-0">
-                <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                    <div class="file-thumbnail">
-                        <img class="border h-100 w-100 object-fit-cover rounded-2"
-                            src="assets/img/products/5-thumb.png" alt="" />
-                    </div>
-                    <div class="ms-3 flex-shrink-1 flex-grow-1">
-                        <h6 class="mb-1">
-                            <a class="stretched-link text-900 fw-semi-bold"
-                                href="#!">apple-smart-watch.png</a>
-                        </h6>
-                        <div class="fs-10">
-                            <span class="fw-semi-bold">Antony</span>
-                            <span class="fw-medium text-600 ms-2">Just Now</span>
-                        </div>
-                        <div class="hover-actions end-0 top-50 translate-middle-y">
-                            <a class="btn btn-tertiary border-300 btn-sm me-1 text-600"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Download"
-                                href="assets/img/icons/cloud-download.svg" download="download">
-                                <img src="assets/img/icons/cloud-download.svg" alt="" width="15" />
-                            </a>
-                            <button class="btn btn-tertiary border-300 btn-sm me-1 text-600 shadow-none"
-                                type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit">
-                                <img src="assets/img/icons/edit-alt.svg" alt="" width="15" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <hr class="text-200" />
-                <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                    <div class="file-thumbnail">
-                        <img class="border h-100 w-100 object-fit-cover rounded-2"
-                            src="assets/img/products/3-thumb.png" alt="" />
-                    </div>
-                    <div class="ms-3 flex-shrink-1 flex-grow-1">
-                        <h6 class="mb-1">
-                            <a class="stretched-link text-900 fw-semi-bold" href="#!">iphone.jpg</a>
-                        </h6>
-                        <div class="fs-10">
-                            <span class="fw-semi-bold">Antony</span>
-                            <span class="fw-medium text-600 ms-2">Yesterday at 1:30 PM</span>
-                        </div>
-                        <div class="hover-actions end-0 top-50 translate-middle-y">
-                            <a class="btn btn-tertiary border-300 btn-sm me-1 text-600"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Download"
-                                href="assets/img/icons/cloud-download.svg" download="download">
-                                <img src="assets/img/icons/cloud-download.svg" alt="" width="15" />
-                            </a>
-                            <button class="btn btn-tertiary border-300 btn-sm me-1 text-600 shadow-none"
-                                type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit">
-                                <img src="assets/img/icons/edit-alt.svg" alt="" width="15" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <hr class="text-200" />
-                <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                    <div class="file-thumbnail">
-                        <img class="img-fluid" src="assets/img/icons/zip.png" alt="" />
-                    </div>
-                    <div class="ms-3 flex-shrink-1 flex-grow-1">
-                        <h6 class="mb-1">
-                            <a class="stretched-link text-900 fw-semi-bold" href="#!">Falcon v1.8.2</a>
-                        </h6>
-                        <div class="fs-10">
-                            <span class="fw-semi-bold">Jane</span>
-                            <span class="fw-medium text-600 ms-2">27 Sep at 10:30 AM</span>
-                        </div>
-                        <div class="hover-actions end-0 top-50 translate-middle-y">
-                            <a class="btn btn-tertiary border-300 btn-sm me-1 text-600"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Download"
-                                href="assets/img/icons/cloud-download.svg" download="download">
-                                <img src="assets/img/icons/cloud-download.svg" alt="" width="15" />
-                            </a>
-                            <button class="btn btn-tertiary border-300 btn-sm me-1 text-600 shadow-none"
-                                type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit">
-                                <img src="assets/img/icons/edit-alt.svg" alt="" width="15" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <hr class="text-200" />
-                <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                    <div class="file-thumbnail">
-                        <img class="border h-100 w-100 object-fit-cover rounded-2"
-                            src="assets/img/products/2-thumb.png" alt="" />
-                    </div>
-                    <div class="ms-3 flex-shrink-1 flex-grow-1">
-                        <h6 class="mb-1">
-                            <a class="stretched-link text-900 fw-semi-bold" href="#!">iMac.jpg</a>
-                        </h6>
-                        <div class="fs-10">
-                            <span class="fw-semi-bold">Rowen</span>
-                            <span class="fw-medium text-600 ms-2">23 Sep at 6:10 PM</span>
-                        </div>
-                        <div class="hover-actions end-0 top-50 translate-middle-y">
-                            <a class="btn btn-tertiary border-300 btn-sm me-1 text-600"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Download"
-                                href="assets/img/icons/cloud-download.svg" download="download">
-                                <img src="assets/img/icons/cloud-download.svg" alt="" width="15" />
-                            </a>
-                            <button class="btn btn-tertiary border-300 btn-sm me-1 text-600 shadow-none"
-                                type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit">
-                                <img src="assets/img/icons/edit-alt.svg" alt="" width="15" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <hr class="text-200" />
-                <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                    <div class="file-thumbnail">
-                        <img class="img-fluid" src="assets/img/icons/docs.png" alt="" />
-                    </div>
-                    <div class="ms-3 flex-shrink-1 flex-grow-1">
-                        <h6 class="mb-1">
-                            <a class="stretched-link text-900 fw-semi-bold" href="#!">functions.php</a>
-                        </h6>
-                        <div class="fs-10">
-                            <span class="fw-semi-bold">John</span>
-                            <span class="fw-medium text-600 ms-2">1 Oct at 4:30 PM</span>
-                        </div>
-                        <div class="hover-actions end-0 top-50 translate-middle-y">
-                            <a class="btn btn-tertiary border-300 btn-sm me-1 text-600"
-                                data-bs-toggle="tooltip" data-bs-placement="top" title="Download"
-                                href="assets/img/icons/cloud-download.svg" download="download">
-                                <img src="assets/img/icons/cloud-download.svg" alt="" width="15" />
-                            </a>
-                            <button class="btn btn-tertiary border-300 btn-sm me-1 text-600 shadow-none"
-                                type="button" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Edit">
-                                <img src="assets/img/icons/edit-alt.svg" alt="" width="15" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row g-0">
-    <div class="col-md-6 col-xxl-3 pe-md-2 mb-3 mb-xxl-0">
-        <div class="card">
-            <div class="card-header d-flex flex-between-center bg-body-tertiary py-2">
-                <h6 class="mb-0">Active Users</h6>
-                <div class="dropdown font-sans-serif btn-reveal-trigger">
-                    <button
-                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                        type="button" id="dropdown-active-user" data-bs-toggle="dropdown"
-                        data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                        <span class="fas fa-ellipsis-h fs-11">
-                        </span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end border py-2"
-                        aria-labelledby="dropdown-active-user">
-                        <a class="dropdown-item" href="#!">View</a>
-                        <a class="dropdown-item" href="#!">Export</a>
-                        <div class="dropdown-divider">
-                        </div>
-                        <a class="dropdown-item text-danger" href="#!">Remove</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body py-2">
-                <div class="d-flex align-items-center position-relative mb-3">
-                    <div class="avatar avatar-2xl status-online">
-                        <img class="rounded-circle" src="assets/img/team/1.jpg" alt="" />
-                    </div>
-                    <div class="flex-1 ms-3">
-                        <h6 class="mb-0 fw-semi-bold">
-                            <a class="stretched-link text-900" href="pages/user/profile.html">Emma
-                                Watson</a>
-                        </h6>
-                        <p class="text-500 fs-11 mb-0">Admin</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center position-relative mb-3">
-                    <div class="avatar avatar-2xl status-online">
-                        <img class="rounded-circle" src="assets/img/team/2.jpg" alt="" />
-                    </div>
-                    <div class="flex-1 ms-3">
-                        <h6 class="mb-0 fw-semi-bold">
-                            <a class="stretched-link text-900" href="pages/user/profile.html">Antony
-                                Hopkins</a>
-                        </h6>
-                        <p class="text-500 fs-11 mb-0">Moderator</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center position-relative mb-3">
-                    <div class="avatar avatar-2xl status-away">
-                        <img class="rounded-circle" src="assets/img/team/3.jpg" alt="" />
-                    </div>
-                    <div class="flex-1 ms-3">
-                        <h6 class="mb-0 fw-semi-bold">
-                            <a class="stretched-link text-900" href="pages/user/profile.html">Anna
-                                Karinina</a>
-                        </h6>
-                        <p class="text-500 fs-11 mb-0">Editor</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center position-relative mb-3">
-                    <div class="avatar avatar-2xl status-offline">
-                        <img class="rounded-circle" src="assets/img/team/4.jpg" alt="" />
-                    </div>
-                    <div class="flex-1 ms-3">
-                        <h6 class="mb-0 fw-semi-bold">
-                            <a class="stretched-link text-900" href="pages/user/profile.html">John
-                                Lee</a>
-                        </h6>
-                        <p class="text-500 fs-11 mb-0">Admin</p>
-                    </div>
-                </div>
-                <div class="d-flex align-items-center position-relative false">
-                    <div class="avatar avatar-2xl status-offline">
-                        <img class="rounded-circle" src="assets/img/team/5.jpg" alt="" />
-                    </div>
-                    <div class="flex-1 ms-3">
-                        <h6 class="mb-0 fw-semi-bold">
-                            <a class="stretched-link text-900" href="pages/user/profile.html">Rowen
-                                Atkinson</a>
-                        </h6>
-                        <p class="text-500 fs-11 mb-0">Editor</p>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer bg-body-tertiary p-0">
-                <a class="btn btn-sm btn-link d-block w-100 py-2" href="app/social/followers.html">All
-                    active users
-                    <span class="fas fa-chevron-right ms-1 fs-11">
+                    <span class="mr-2">
+                        <i class="fas fa-circle text-info"></i> Referral
                     </span>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xxl-3 ps-md-2 order-xxl-1 mb-3 mb-xxl-0">
-        <div class="card h-100">
-            <div class="card-header bg-body-tertiary d-flex flex-between-center py-2">
-                <h6 class="mb-0">Bandwidth Saved</h6>
-                <div class="dropdown font-sans-serif btn-reveal-trigger">
-                    <button
-                        class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                        type="button" id="dropdown-bandwidth-saved" data-bs-toggle="dropdown"
-                        data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                        <span class="fas fa-ellipsis-h fs-11">
-                        </span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-end border py-2"
-                        aria-labelledby="dropdown-bandwidth-saved">
-                        <a class="dropdown-item" href="#!">View</a>
-                        <a class="dropdown-item" href="#!">Export</a>
-                        <div class="dropdown-divider">
-                        </div>
-                        <a class="dropdown-item text-danger" href="#!">Remove</a>
-                    </div>
-                </div>
-            </div>
-            <div class="card-body d-flex flex-center flex-column">
-                <!-- Find the JS file for the following chart at: src/js/charts/echarts/bandwidth-saved.js-->
-                <!-- If you are not using gulp based workflow, you can find the transpiled code at: public/assets/js/theme.js-->
-                <div class="echart-bandwidth-saved" data-echart-responsive="true">
-                </div>
-                <div class="text-center mt-3">
-                    <h6 class="fs-9 mb-1">
-                        <span class="fas fa-check text-success me-1" data-fa-transform="shrink-2">
-                        </span>35.75 GB saved
-                    </h6>
-                    <p class="fs-10 mb-0">38.44 GB total bandwidth</p>
-                </div>
-            </div>
-            <div class="card-footer bg-body-tertiary py-2">
-                <div class="row flex-between-center">
-                    <div class="col-auto">
-                        <select class="form-select form-select-sm">
-                            <option>Last 6 Months</option>
-                            <option>Last Year</option>
-                            <option>Last 2 Year</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <a class="fs-10 font-sans-serif" href="#!">Help</a>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-xxl-6 px-xxl-2">
-        <div class="card h-100">
-            <div class="card-header bg-body-tertiary py-2">
-                <div class="row flex-between-center">
-                    <div class="col-auto">
-                        <h6 class="mb-0">Top Products</h6>
-                    </div>
-                    <div class="col-auto d-flex">
-                        <a class="btn btn-link btn-sm me-2" href="#!">View Details</a>
-                        <div class="dropdown font-sans-serif btn-reveal-trigger">
-                            <button
-                                class="btn btn-link text-600 btn-sm dropdown-toggle dropdown-caret-none btn-reveal"
-                                type="button" id="dropdown-top-products" data-bs-toggle="dropdown"
-                                data-boundary="viewport" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-ellipsis-h fs-11">
-                                </span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-end border py-2"
-                                aria-labelledby="dropdown-top-products">
-                                <a class="dropdown-item" href="#!">View</a>
-                                <a class="dropdown-item" href="#!">Export</a>
-                                <div class="dropdown-divider">
-                                </div>
-                                <a class="dropdown-item text-danger" href="#!">Remove</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+    <!-- Content Column -->
+    <div class="col-lg-6 mb-4">
+
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
             </div>
-            <div class="card-body h-100">
-                <!-- Find the JS file for the following chart at: src/js/charts/echarts/top-products.js-->
-                <!-- If you are not using gulp based workflow, you can find the transpiled code at: public/assets/js/theme.js-->
-                <div class="echart-bar-top-products h-100" data-echart-responsive="true">
+            <div class="card-body">
+                <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+                        aria-valuemax="100"></div>
+                </div>
+                <h4 class="small font-weight-bold">Payout Details <span class="float-right">80%</span></h4>
+                <div class="progress mb-4">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
+                        aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <h4 class="small font-weight-bold">Account Setup <span class="float-right">Complete!</span></h4>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
+                        aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
+
+        <!-- Color System -->
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-primary text-white shadow">
+                    <div class="card-body">
+                        Primary
+                        <div class="text-white-50 small">#4e73df</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-success text-white shadow">
+                    <div class="card-body">
+                        Success
+                        <div class="text-white-50 small">#1cc88a</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-info text-white shadow">
+                    <div class="card-body">
+                        Info
+                        <div class="text-white-50 small">#36b9cc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-warning text-white shadow">
+                    <div class="card-body">
+                        Warning
+                        <div class="text-white-50 small">#f6c23e</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-danger text-white shadow">
+                    <div class="card-body">
+                        Danger
+                        <div class="text-white-50 small">#e74a3b</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-secondary text-white shadow">
+                    <div class="card-body">
+                        Secondary
+                        <div class="text-white-50 small">#858796</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-light text-black shadow">
+                    <div class="card-body">
+                        Light
+                        <div class="text-black-50 small">#f8f9fc</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card bg-dark text-white shadow">
+                    <div class="card-body">
+                        Dark
+                        <div class="text-white-50 small">#5a5c69</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6 mb-4">
+
+        <!-- Illustrations -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                        src="img/undraw_posting_photo.svg" alt="...">
+                </div>
+                <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow"
+                        href="https://undraw.co/">unDraw</a>, a
+                    constantly updated collection of beautiful svg images that you can use
+                    completely free and without attribution!</p>
+                <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                    unDraw &rarr;</a>
+            </div>
+        </div>
+
+        <!-- Approach -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+            </div>
+            <div class="card-body">
+                <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                    CSS bloat and poor page performance. Custom CSS classes are used to create
+                    custom components and custom utility classes.</p>
+                <p class="mb-0">Before working with this theme, you should become familiar with the
+                    Bootstrap framework, especially the utility classes.</p>
+            </div>
+        </div>
+
     </div>
 </div>
 @endsection

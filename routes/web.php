@@ -6,10 +6,6 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
 
-
-
-
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
@@ -21,8 +17,9 @@ use App\Http\Controllers\CinemaController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\Fk_MovieController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ScheduleTimeController;
 
-// Đăng ký các route auth (login, register, password...)
 Auth::routes();
 
 // Trang chủ sau khi đăng nhập
@@ -88,6 +85,7 @@ Route::prefix('admin/cinemas')->middleware(['auth', 'admin'])->name('admin.cinem
     // Nested Rooms trong Cinema
     Route::prefix('{cinema}/rooms')->name('rooms.')->group(function () {
         Route::get('/trash', [RoomController::class, 'trash'])->name('trash');
+        Route::get('/show', [RoomController::class, 'show'])->name('show');
         Route::get('/create', [RoomController::class, 'create'])->name('create');
         Route::post('/{room}/restore', [RoomController::class, 'restore'])->name('restore');
         Route::delete('/{room}/force-delete', [RoomController::class, 'forceDelete'])->name('forceDelete');
@@ -97,5 +95,34 @@ Route::prefix('admin/cinemas')->middleware(['auth', 'admin'])->name('admin.cinem
         Route::delete('/{room}', [RoomController::class, 'destroy'])->name('destroy');
         Route::get('/', [RoomController::class, 'index'])->name('index');
         Route::post('/', [RoomController::class, 'store'])->name('store');
+    });
+
+    // Nested Rooms trong Cinema
+    Route::prefix('{cinema}/schedules')->name('schedules.')->group(function () {
+        Route::get('/trash', [ScheduleController::class, 'trash'])->name('trash');
+        Route::get('/create', [ScheduleController::class, 'create'])->name('create');
+        Route::post('/{schedule}/restore', [ScheduleController::class, 'restore'])->name('restore');
+        Route::delete('/{schedule}/force-delete', [ScheduleController::class, 'forceDelete'])->name('forceDelete');
+        Route::get('/{schedule}/edit', [ScheduleController::class, 'edit'])->name('edit');
+        Route::get('/{schedule}', [ScheduleController::class, 'show'])->name('show');
+        Route::put('/{schedule}', [ScheduleController::class, 'update'])->name('update');
+        Route::delete('/{schedule}', [ScheduleController::class, 'destroy'])->name('destroy');
+        Route::get('/', [ScheduleController::class, 'index'])->name('index');
+        Route::post('/', [ScheduleController::class, 'store'])->name('store');
+        Route::post('/check-conflicts', [ScheduleController::class, 'store'])->name('check-conflicts');
+    });
+
+    Route::prefix('{cinema}/schedule_times')->name('schedule_times.')->group(function () {
+        Route::get('/trash', [ScheduleTimeController::class, 'trash'])->name('trash');
+        Route::get('/create', [ScheduleTimeController::class, 'create'])->name('create');
+        Route::post('/{schedule}/restore', [ScheduleTimeController::class, 'restore'])->name('restore');
+        Route::delete('/{schedule}/force-delete', [ScheduleTimeController::class, 'forceDelete'])->name('forceDelete');
+        Route::get('/{schedule}/edit', [ScheduleTimeController::class, 'edit'])->name('edit');
+        Route::get('/{schedule}', [ScheduleTimeController::class, 'show'])->name('show');
+        Route::put('/{schedule}', [ScheduleTimeController::class, 'update'])->name('update');
+        Route::delete('/{schedule}', [ScheduleTimeController::class, 'destroy'])->name('destroy');
+        Route::get('/', [ScheduleTimeController::class, 'index'])->name('index');
+        Route::post('/', [ScheduleTimeController::class, 'store'])->name('store');
+        Route::post('/check-conflicts', [ScheduleTimeController::class, 'store'])->name('check-conflicts');
     });
 });

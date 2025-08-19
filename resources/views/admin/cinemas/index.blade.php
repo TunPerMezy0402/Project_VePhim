@@ -59,7 +59,7 @@
                             {{ $loop->iteration + ($cinemas->currentPage() - 1) * $cinemas->perPage() }}
                         </td>
                         <td class="name align-middle white-space-nowrap py-2">
-                            <a href="{{ route('admin.cinemas.movies.index', $cinema->id) }}">
+                            <a href="{{ route('admin.cinemas.schedules.index', $cinema->id) }}">
                                 <div class="d-flex d-flex align-items-center">
                                 <div class="avatar avatar-xl me-2">
                                     <img class="rounded-circle" src="../../assets/img/team/2.jpg" alt="" />

@@ -9,7 +9,7 @@ class Cinema extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name','address'];
+    protected $fillable = ['name', 'address'];
 
     public function rooms()
     {
@@ -17,7 +17,12 @@ class Cinema extends Model
     }
 
     public function movies()
-{
-    return $this->belongsToMany(Movie::class, 'cinema_movie');
-}
+    {
+        return $this->belongsToMany(Movie::class, 'cinema_movie');
+    }
+
+    public function scheduleTimes()
+    {
+        return $this->hasMany(ScheduleTime::class);
+    }
 }
